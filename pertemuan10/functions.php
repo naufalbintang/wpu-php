@@ -11,4 +11,27 @@
         }
         return $rows;
     }
+
+    function tambah($data){
+        global $conn;
+        
+        // ambil data dari tiap elemen di dalam form
+        $nama = htmlspecialchars($data["nama"]);
+        $nim = htmlspecialchars($data["nim"]);
+        $email = htmlspecialchars($data["email"]);
+        $prodi = htmlspecialchars($data["prodi"]);
+        $gambar = htmlspecialchars($data["gambar"]);
+
+        // query insert data
+        $query = "INSERT INTO mahasiswa VALUES('', '$nama', '$nim', '$email', '$prodi', '$gambar')";
+        mysqli_query($conn, $query);
+        
+        return mysqli_affected_rows($conn);
+    }
+
+    function hapus($id){
+        global $conn;
+        mysqli_query($conn, "DELETE FROM mahasiswa WHERE id=$id");
+        return mysqli_affected_rows($conn);
+    }
 ?>
